@@ -1,0 +1,193 @@
+@font-face {
+  font-family: 'SSonder';
+  src: url('../FONT/SSonderTRIAL-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend';
+  src: url('../FONT/Lexend-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #0A0521, #362150);
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .bubble {
+    position: absolute;
+    width: 600px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    filter: blur(40px);
+    animation: float 6s infinite ease-in-out;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(100px, -100px); }
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .left-icons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .left-icons .icon img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .logo {
+    font-size: 75px;
+    font-family: 'SSonder', sans-serif;
+  }
+  
+  .menu-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    color: #0A0521;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s;
+  }
+  
+  .menu-button:hover {
+    background: gold;
+    color: #362150;
+  }
+  
+  .center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .sound-control {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .wave {
+    width: 30px;
+    height: 20px;
+    margin-left: 10px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+  
+  .wave div {
+    width: 4px;
+    height: 5px;
+    background: white;
+    animation: waveAnim 1s infinite;
+  }
+  
+  .wave.playing div:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .wave.playing div:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .wave.playing div:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes waveAnim {
+    0%, 100% { height: 5px; }
+    50% { height: 20px; }
+  }
+  
+  .pagination {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .dot-line {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: transparent;
+  }
+  
+  .dot.active {
+    background: gold;
+    border-color: gold;
+  }
+  
+  .line {
+    width: 30px;
+    height: 2px;
+    background: white;
+  }
+
+  .sparkle {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: rgba(194, 106, 255, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 6px rgba(194, 106, 255, 0.8);
+    animation: sparkleBurst 0.6s ease-out forwards;
+  }
+  
+  @keyframes sparkleBurst {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--x), var(--y)) scale(0.8);
+      opacity: 0;
+    }
+  }
+  

@@ -1,14 +1,5 @@
 let soundOn = true;
-const wave = document.getElementById('soundWave');
-
-function toggleSound() {
-  if (soundOn) {
-    wave.classList.remove('playing');
-  } else {
-    wave.classList.add('playing');
-  }
-  soundOn = !soundOn;
-}
+const wave = document.getElementById('curseur');
 
 wave.classList.add('playing');
 
@@ -33,11 +24,9 @@ document.addEventListener('mousemove', (e) => {
     const sparkle = document.createElement('div');
     sparkle.classList.add('sparkle');
 
-    // Position initiale centrée autour du curseur
     sparkle.style.left = `${e.clientX}px`;
     sparkle.style.top = `${e.clientY}px`;
 
-    // Mouvement aléatoire vers l'arrière
     const angle = Math.random() * 2 * Math.PI;
     const radius = Math.random() * 40 + 10;
     const offsetX = Math.cos(angle) * radius;
@@ -47,10 +36,32 @@ document.addEventListener('mousemove', (e) => {
     sparkle.style.setProperty('--y', `${offsetY}px`);
 
     document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 600);
+  }
+});
 
-    // Nettoyage après disparition
-    setTimeout(() => {
-      sparkle.remove();
-    }, 600);
+let isScrolling = false;
+let scrollAmount = 0;
+
+const videoOverlay = document.getElementById('videoOverlay');
+const quizVideo = document.getElementById('quizVideo');
+const elementsToHide = document.querySelectorAll('header, .bubble, .pagination, .wave');
+
+
+const container = document.getElementById('scrollContainer');
+    window.addEventListener('wheel', function(e) {
+      container.scrollLeft += e.deltaY;
+    });
+
+const menuOverlay = document.getElementById('menuOverlay');
+const menuContent = document.getElementById('menuContent');
+
+menuBtn.addEventListener('click', () => {
+  menuOverlay.style.display = 'flex';
+});
+
+menuOverlay.addEventListener('click', (e) => {
+  if (!menuContent.contains(e.target)) {
+    menuOverlay.style.display = 'none';
   }
 });
